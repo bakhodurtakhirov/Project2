@@ -13,7 +13,7 @@ import utilities.DriverClassWithoutLogin;
 
 public class US_205_Login_Negative_Melik extends DriverClassWithoutLogin {
 
-    @Test
+    @Test(priority = 1)
     void logIn1() {
         Actions actions = new Actions(driver);
         WebElement login = driver.findElement(By.linkText("Log in"));
@@ -31,7 +31,7 @@ public class US_205_Login_Negative_Melik extends DriverClassWithoutLogin {
 
         Assert.assertTrue(check.isDisplayed());
     }
-    @Test
+    @Test(priority = 2)
     void logIn2(){
         Actions actions = new Actions(driver);
         WebElement login = driver.findElement(By.linkText("Log in"));
@@ -50,7 +50,7 @@ public class US_205_Login_Negative_Melik extends DriverClassWithoutLogin {
 
         Assert.assertTrue(check.isDisplayed());
     }
-    @Test
+    @Test(priority = 3)
     void logIn3(){
         Actions actions = new Actions(driver);
         WebElement login = driver.findElement(By.linkText("Log in"));
@@ -68,7 +68,7 @@ public class US_205_Login_Negative_Melik extends DriverClassWithoutLogin {
 
         Assert.assertTrue(check.isDisplayed());
     }
-    @Test
+    @Test(priority = 4)
     void logIn4(){
         Actions actions = new Actions(driver);
         WebElement login = driver.findElement(By.linkText("Log in"));
