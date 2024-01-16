@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.DriverClassWithLogin;
 
@@ -32,7 +33,7 @@ public class US_203_Logout_Jabril extends DriverClassWithLogin {
 
         String currentUrl = driver.getCurrentUrl();
 
-        if (currentUrl.equals("https://demowebshop.tricentis.com/")) {
+        Assert.assertEquals (currentUrl,"https://demowebshop.tricentis.com/"); {
 
             System.out.println("Log out is successful");
 
