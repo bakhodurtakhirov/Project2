@@ -2,7 +2,6 @@ package Group2;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -37,111 +36,54 @@ public class US_208_Coupon_GiftCard_NEGATIVE_Bakhodur extends DriverClassWithLog
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         
-        WebElement computers = driver.findElement(By.linkText("Computers"));
-        Action action = actions.click(computers).build();
-        action.perform();
+        actions.click(driver.findElement(By.linkText("Computers"))).perform();
         
-        WebElement notebooks = driver.findElement(By.cssSelector("li[class=\"inactive\"]>[href=\"/notebooks\"]"));
-        action = actions.click(notebooks).build();
-        action.perform();
+        actions.click(driver.findElement(By.cssSelector("li[class=\"inactive\"]>[href=\"/notebooks\"]"))).perform();
         
-        WebElement laptop14inch = driver.findElement(By.linkText("14.1-inch Laptop"));
-        action = actions.click(laptop14inch).build();
-        action.perform();
+        actions.click(driver.findElement(By.linkText("14.1-inch Laptop"))).perform();
         
-        WebElement adToCart = driver.findElement(By.id("add-to-cart-button-31"));
-        action = actions.click(adToCart).build();
-        action.perform();
+        actions.click(driver.findElement(By.id("add-to-cart-button-31"))).perform();
         
-        WebElement shoppingCart = driver.findElement(By.className("cart-label"));
-        action = actions.click(shoppingCart).build();
-        action.perform();
+        actions.click(driver.findElement(By.className("cart-label"))).perform();
         
-        WebElement applyCoupon = driver.findElement(By.name("applydiscountcouponcode"));
-        action = actions.click(applyCoupon).build();
-        action.perform();
+        actions.click(driver.findElement(By.name("applydiscountcouponcode"))).perform();
         
-        WebElement couponMessage = driver.findElement(By.className("message"));
-        Assert.assertTrue(couponMessage.getText().contains("couldn't be applied"));
+        Assert.assertTrue(driver.findElement(By.className("message")).getText().contains("couldn't be applied"));
         
-        WebElement addGiftCard = driver.findElement(By.name("applygiftcardcouponcode"));
-        action = actions.click(addGiftCard).build();
-        action.perform();
+        actions.click(driver.findElement(By.name("applygiftcardcouponcode"))).perform();
         
-        WebElement giftCardMessage = driver.findElement(By.className("message"));
-        Assert.assertTrue(giftCardMessage.getText().contains("couldn't be applied"));
+        Assert.assertTrue(driver.findElement(By.className("message")).getText().contains("couldn't be applied"));
         
-        WebElement termsofservice = driver.findElement(By.name("termsofservice"));
-        action = actions.click(termsofservice).build();
-        action.perform();
+        actions.click(driver.findElement(By.name("termsofservice")));
         
-        WebElement checkOut = driver.findElement(By.cssSelector("button[id=checkout]"));
-        action = actions.click(checkOut).build();
-        action.perform();
+        actions.click(driver.findElement(By.cssSelector("button[id=checkout]"))).perform();
         
-        WebElement selectAddress = driver.findElement(By.id("billing-address-select"));
-        Select select = new Select(selectAddress);
-        select.selectByVisibleText("New Address");
+        new Select(driver.findElement(By.id("billing-address-select"))).selectByVisibleText("New Address");
         
-        WebElement country = driver.findElement(By.id("BillingNewAddress_CountryId"));
-        select = new Select(country);
-        select.selectByVisibleText("United States");
+        new Select(driver.findElement(By.id("BillingNewAddress_CountryId"))).selectByVisibleText("United States");
         
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//option[text()=\"Alaska\"]")));
-        WebElement stateProvince = driver.findElement(By.id("BillingNewAddress_StateProvinceId"));
-        select = new Select(stateProvince);
-        select.selectByVisibleText("Alaska");
+        new Select(driver.findElement(By.id("BillingNewAddress_StateProvinceId"))).selectByVisibleText("Alaska");
         
-        WebElement city = driver.findElement(By.id("BillingNewAddress_City"));
-        action = actions.sendKeys(city, "Anycity").build();
-        action.perform();
+        actions.sendKeys(driver.findElement(By.id("BillingNewAddress_City")), "Anycity");
+        actions.sendKeys(driver.findElement(By.id("BillingNewAddress_Address1")), "AnyAddress");
+        actions.sendKeys(driver.findElement(By.id("BillingNewAddress_ZipPostalCode")), "11111");
+        actions.sendKeys(driver.findElement(By.id("BillingNewAddress_PhoneNumber")), "1111111111");
+        actions.click(driver.findElement(By.xpath("(//input[@title=\"Continue\"])[1]"))).perform();
         
-        WebElement address1 = driver.findElement(By.id("BillingNewAddress_Address1"));
-        action = actions.sendKeys(address1, "AnyAddress").build();
-        action.perform();
+        actions.click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@title=\"Continue\"])[2]")))).perform();
         
-        WebElement zipCode = driver.findElement(By.id("BillingNewAddress_ZipPostalCode"));
-        action = actions.sendKeys(zipCode, "11111").build();
-        action.perform();
+        actions.click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("shipping-method-next-step-button")))).perform();
         
-        WebElement phoneNumber = driver.findElement(By.id("BillingNewAddress_PhoneNumber"));
-        action = actions.sendKeys(phoneNumber, "1111111111").build();
-        action.perform();
+        actions.click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("payment-method-next-step-button")))).perform();
         
-        WebElement continue1 = driver.findElement(By.xpath("(//input[@title=\"Continue\"])[1]"));
-        action = actions.click(continue1).build();
-        action.perform();
+        actions.click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("payment-info-next-step-button")))).perform();
         
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@title=\"Continue\"])[2]")));
-        WebElement continue2 = driver.findElement(By.xpath("(//input[@title=\"Continue\"])[2]"));
-        action = actions.click(continue2).build();
-        action.perform();
+        actions.click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("confirm-order-next-step-button")))).perform();
         
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("shipping-method-next-step-button")));
-        WebElement continue3 = driver.findElement(By.className("shipping-method-next-step-button"));
-        action = actions.click(continue3).build();
-        action.perform();
+        System.out.println("orderMessage.getText() = " + wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("strong"))).getText());
+        Assert.assertTrue(driver.findElement(By.tagName("strong")).getText().contains("Your order has been successfully processed!"));
         
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("payment-method-next-step-button")));
-        WebElement continue4 = driver.findElement(By.className("payment-method-next-step-button"));
-        action = actions.click(continue4).build();
-        action.perform();
-        
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("payment-info-next-step-button")));
-        WebElement continue5 = driver.findElement(By.className("payment-info-next-step-button"));
-        action = actions.click(continue5).build();
-        action.perform();
-        
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("confirm-order-next-step-button")));
-        WebElement continue6 = driver.findElement(By.className("confirm-order-next-step-button"));
-        action = actions.click(continue6).build();
-        action.perform();
-        
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("strong")));
-        WebElement orderMessage = driver.findElement(By.tagName("strong"));
-        System.out.println("orderMessage.getText() = " + orderMessage.getText());
-        Assert.assertTrue(orderMessage.getText().contains("Your order has been successfully processed!"));
-        
-        myWait(10);
+        myWait(5);
     }
 }
